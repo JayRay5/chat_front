@@ -1,7 +1,7 @@
 //import for react
 import React, { useState, useEffect } from 'react';
-
-import { check_user } from '../utils/api';
+import Navbar from '../../components/Navbar/Navbar';
+import { check_user } from '../../utils/api';
 
 function PageHome(){
     useEffect(()=>{
@@ -19,6 +19,7 @@ function PageHome(){
     }
     return(
         <div>
+            <Navbar/>
             <button title='test' onClick={handleCheck}/>
         </div>
     )

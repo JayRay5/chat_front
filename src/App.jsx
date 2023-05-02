@@ -2,8 +2,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //
-import PageLogin from './pages/PageLogin'
-import PageHome from './pages/PageHome'
+import PageLogin from './pages/PageLogin/PageLogin'
+import PageHome from './pages/PageHome/PageHome'
 function App() {
   return (
       <BrowserRouter>
