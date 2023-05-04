@@ -22,6 +22,7 @@ export const login= (userId,password)=>{
            
         }
         else{
+            console.log(data)
             window.alert("Authentification Failed!")
         }
     })
