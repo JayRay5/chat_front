@@ -1,37 +1,59 @@
 //import for react
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
+import Topbar from '../../components/Topbar/Topbar';
 import { check_user } from '../../utils/api';
 import Chatlist from '../../components/Chatlist/Chatlist';
 import Card from '../../components/Card/Card';
-import Modal from '../../components/Modal/Modal'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from '../../components/Form/Form';
+import './PageHome.css';
 
-function PageHome(){
-    useEffect(()=>{
-        if(!localStorage.getItem("userId")){
-            window.location.href = '/'; 
+function PageHome() {
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        if (!localStorage.getItem("userId")) {
+            window.location.href = '/';
         }
-        else{
+        else {
             console.log(localStorage.getItem("userId"))
-            
+
         }
 
-    },[])
-    const handleCheck = ()=>{
+    }, [])
+
+    const handleModal = () => {
+        console.log(showModal)
+        setShowModal(!showModal)
+    }
+    const handleCheck = () => {
         check_user()
     }
-    return(
+    return (
         <>
-            <Navbar/>
+            <Topbar />
             <div className="container-cards">
                 <Card>
                     <h2>Hello Card</h2>
                 </Card>
             </div>
-            <Chatlist/>
-            <Modal/>
+            <Chatlist />
+            <Button variant="primary" onClick={handleModal}>Add</Button>
+            <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header closeButton>
+                    <Modal.Title className="title-modal" id="contained-modal-title-vcenter">
+                        Choose a name for your Chat
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className="button-modal" onClick={handleModal}>Create</Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
-
 }
 export default PageHome;
