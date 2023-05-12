@@ -3,9 +3,9 @@ import { useState } from 'react'
 import './Chatlist.css'
 
 
-export default function Chatlist() {
+export default function Chatlist(props) {
 
-    const [chats, setChats] = useState (["Chat1","Chat2","Chat3"]);
+    const chats= props.chats
 
     return (
         <div>

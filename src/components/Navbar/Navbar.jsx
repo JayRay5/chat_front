@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import './Navbar.css'
 import logo from './menu.svg'
 
+import { log_out } from '../../utils/api';
+
 export default function Navbar() {
   const[toggleMenu, setToggleMenu] = useState(false);
   const[largeur, setLargeur] = useState(window.innerWidth);
@@ -9,6 +11,8 @@ export default function Navbar() {
   const toggleNav = () => {
     setToggleMenu(!toggleMenu)
   }
+
+  
 
   useEffect(() => {
 
@@ -30,7 +34,7 @@ export default function Navbar() {
             <img src={logo} alt="Logo" className="logo"/>
             <li className="items">User</li>
             <li className="items">Chat</li>
-            <li className="items">Logout</li>
+            <li className="items"> <button onClick={log_out}>Logout</button></li>
         </ul>
         )}
         <button onClick={toggleNav} className="btn"></button>

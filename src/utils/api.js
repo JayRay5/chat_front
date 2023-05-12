@@ -1,4 +1,38 @@
+
 const base_url="http://localhost:8000/"
+
+/*
+export const login= async (userId,password)=>{
+    try {
+        const response = await fetch(base_url+"user/login", {
+            method: 'POST',
+            credentials:"include",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              userId: userId,
+              password: password
+            })
+          });
+        const data = await response.json();
+        console.log(data);
+        if(data.isConnected==true){
+            localStorage.setItem("userId",data.userId)
+            window.location.href = '/home'; 
+        }
+        else{
+            console.log(data)
+            window.alert("Authentification Failed!")
+        }
+    } catch (error) {
+        console.log(error)
+        window.alert("Error with the server")
+    }
+}
+*/
+
+
 
 export const login= (userId,password)=>{
     fetch(base_url+"user/login", {
@@ -12,14 +46,14 @@ export const login= (userId,password)=>{
           password: password
         })
       })
-    .then((response)=>response.json())
+    .then((response)=>{
+        console.log(response)
+        return response.json()})
     .then((data)=>{
+        window.alert(data)
         if(data.isConnected==true){
             localStorage.setItem("userId",data.userId)
-            if(localStorage.getItem("userId")){
-                window.location.href = '/home'; 
-            }
-           
+            window.location.href = '/home'; 
         }
         else{
             console.log(data)
@@ -32,43 +66,177 @@ export const login= (userId,password)=>{
 
 }
 
-export const check_user= ()=>{
+
+
+export const get_chats= ()=>{
     if(localStorage.getItem("userId")){
-        const userId=localStorage.getItem("userId")
-        fetch(base_url+"user/check_user", {
-            method: "POST",
-            credentials:"include",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify( {
-                userId:userId})
-        
-        })
-        .then((response)=>response.json())
-        .then((data)=>{
-            return data
-        })
-        .catch((err)=>{
-            console.log(err)
-            window.alert("You are not login")
-        })}
+    return fetch(base_url+"chat/all", {
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+  })
+    .then((response)=>response.json())
+    .then((data)=>{
+        console.log(data.rows)
+        return data.rows
+    })
+    .catch((err)=>{
+        console.log(err)
+        window.alert("Error with the server")})
+    }
+
+    else{
+        window.location.href='http://localhost:3000'
+    }
 
 }
 
-export const get_profil= ()=>{
+export const create_chat= (name,userId)=>{
     if(localStorage.getItem("userId")){
-    fetch(base_url+"user/profil", {
+    fetch(base_url+"chat/new", {
+        method: 'POST',
+        credentials:"include",
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+            name: name,
+            userId: userId
+        })
       })
+    .then((response)=>{
+        return response.json()})
+    .then((data)=>{
+        console.log(data)
+        return data
+    })
+    .catch((err)=>{
+        console.log(err)
+        window.alert("Error with the server")})
+    }
+    else{
+        window.location.href='http://localhost:3000'
+    }
+}
+
+export const get_chat= (chatId)=>{
+    if(localStorage.getItem("userId")){
+    fetch(base_url+"chat/all", {
+        method:"POST",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chatId:chatId
+        })
+  })
     .then((response)=>response.json())
+    .then((data)=>{
+        console.log(data)
+        return data
+    })
+    .catch((err)=>{
+        console.log(err)
+        window.alert("Error with the server")})
+    }
+
+    else{
+        window.location.href='http://localhost:3000'
+    }
+
+}
+
+export const get_users= ()=>{
+    if(localStorage.getItem("userId")){
+    fetch(base_url+"user/all", {
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+  })
+    .then((response)=>response.json())
+    .then((data)=>{
+        console.log(data)
+        return data
+    })
+    .catch((err)=>{
+        console.log(err)
+        window.alert("Error with the server")})
+    }
+
+    else{
+        window.location.href='http://localhost:3000'
+    }
+
+}
+
+export const write_message= (messageValue)=>{
+    if(localStorage.getItem("userId")){
+    fetch(base_url+"chat/chat/new_message", {
+        method: 'POST',
+        credentials:"include",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            messageValue:messageValue
+        })
+      })
+    .then((response)=>{
+        return response.json()})
     .then((data)=>{
         return data
     })
     .catch((err)=>{
         console.log(err)
-        window.alert("Error with the server")})}
+        window.alert("Error with the server")})
+    }
+    else{
+        window.location.href='http://localhost:3000'
+    }
+}
+
+export const chat_add_user= (userId)=>{
+    if(localStorage.getItem("userId")){
+    fetch(base_url+"chat/chat/add_user", {
+        method: 'POST',
+        credentials:"include",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId:userId
+        })
+      })
+    .then((response)=>{
+        console.log(response.json())
+        return response.json()})
+    .then((data)=>{
+        console.log(data)
+        window.alert("User added!")
+    })
+    .catch((err)=>{
+        console.log(err)
+        window.alert("Error with the server")})
+    }
+    else{
+        window.location.href='http://localhost:3000'
+    }
+}
+
+export const log_out=()=>{
+
+    fetch(base_url+"user/logout", {
+        method: 'GET',
+        credentials:"include",
+        headers: {
+          'Content-Type': 'application/json'
+        }})
+    .then(()=>{
+        window.location.href='http://localhost:3000'
+    })
+    .catch((err)=>console.log(err))
 
 }

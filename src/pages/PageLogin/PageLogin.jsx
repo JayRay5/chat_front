@@ -13,7 +13,8 @@ function PageLogin (){
         localStorage.removeItem("userId")
     },[])
 
-    const handleSubmit=()=>{
+    const handleSubmit= (event)=>{
+        event.preventDefault()
         login(userId,password)
     }
 
@@ -37,7 +38,7 @@ function PageLogin (){
             <label htmlFor="password"></label>
             <input value={password} onChange={handlePassword} id="password" type="password" placeholder="password" className="password"></input>
             
-            <button onClick={handleSubmit}>Continue</button>
+            <button type='submit' onClick={handleSubmit}>Continue</button>
             </form>
         </>
     )

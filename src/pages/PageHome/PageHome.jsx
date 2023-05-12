@@ -1,24 +1,33 @@
 //import for react
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import { check_user } from '../../utils/api';
-import Chatlist from '../../components/Chatlist/Chatlist';
+ import Chatlist from '../../components/Chatlist/Chatlist';
 import Card from '../../components/Card/Card';
 import Modal from '../../components/Modal/Modal'
+import { get_chats } from '../../utils/api';
+
 
 function PageHome(){
-    useEffect(()=>{
+
+    const [chatList, setChatList] = useState([])
+    useEffect( ()=>{
         if(!localStorage.getItem("userId")){
             window.location.href = '/'; 
         }
         else{
-            console.log(localStorage.getItem("userId"))
+            const fetchData = async ()=>{
+                const result= await get_chats()
+                console.log(result)
+                setChatList(result)
+            }
             
+            fetchData().catch((err)=>console.log(err))
         }
-
+        
     },[])
-    const handleCheck = ()=>{
-        check_user()
+
+    const handleClick = ()=>{
+        console.log(chatList)
     }
     return(
         <>
@@ -26,9 +35,10 @@ function PageHome(){
             <div className="container-cards">
                 <Card>
                     <h2>Hello Card</h2>
+                    <button onClick={handleClick}>Click</button>
                 </Card>
             </div>
-            <Chatlist/>
+            <Chatlist chats={chatList}/>
             <Modal/>
         </>
     )
