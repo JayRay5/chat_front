@@ -121,16 +121,15 @@ export const create_chat= (name,userId)=>{
 }
 
 export const get_chat= (chatId)=>{
+    console.log("cc")
     if(localStorage.getItem("userId")){
-    fetch(base_url+"chat/all", {
-        method:"POST",
+        console.log("cc2")
+    fetch(base_url+`${chatId}`, {
+        method:"GET",
         credentials:"include",
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chatId:chatId
-        })
+        }
   })
     .then((response)=>response.json())
     .then((data)=>{
@@ -138,8 +137,7 @@ export const get_chat= (chatId)=>{
         return data
     })
     .catch((err)=>{
-        console.log(err)
-        window.alert("Error with the server")})
+        console.log(err)})
     }
 
     else{
@@ -227,7 +225,7 @@ export const chat_add_user= (userId)=>{
 }
 
 export const log_out=()=>{
-
+    console.log("cc")
     fetch(base_url+"user/logout", {
         method: 'GET',
         credentials:"include",

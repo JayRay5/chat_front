@@ -1,20 +1,23 @@
 //import for react
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
- import Chatlist from '../../components/Chatlist/Chatlist';
+import Topbar from '../../components/Topbar/Topbar';
+import Chatlist from '../../components/Chatlist/Chatlist';
 import Card from '../../components/Card/Card';
-import Modal from '../../components/Modal/Modal'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from '../../components/Form/Form';
+import './PageHome.css';
+
 import { get_chats } from '../../utils/api';
 
-
-function PageHome(){
-
-    const [chatList, setChatList] = useState([])
-    useEffect( ()=>{
-        if(!localStorage.getItem("userId")){
-            window.location.href = '/'; 
+function PageHome() {
+    const [showModal, setShowModal] = useState(false);
+    const [chatList,setChatList]= useState([])
+    useEffect(() => {
+        if (!localStorage.getItem("userId")) {
+            window.location.href = '/';
         }
-        else{
+        else {
             const fetchData = async ()=>{
                 const result= await get_chats()
                 console.log(result)
@@ -22,26 +25,45 @@ function PageHome(){
             }
             
             fetchData().catch((err)=>console.log(err))
-        }
-        
-    },[])
 
-    const handleClick = ()=>{
+        }
+
+    }, [])
+
+    const handleModal = () => {
+        console.log(showModal)
+        setShowModal(!showModal)
+    }
+    
+
+    const handleClick = () => {
         console.log(chatList)
     }
-    return(
+    return (
         <>
-            <Navbar/>
+            <Topbar />
             <div className="container-cards">
                 <Card>
                     <h2>Hello Card</h2>
                     <button onClick={handleClick}>Click</button>
                 </Card>
             </div>
-            <Chatlist chats={chatList}/>
-            <Modal/>
+            <Chatlist chats={chatList} />
+            <Button variant="primary" onClick={handleModal}>Add</Button>
+            <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header closeButton>
+                    <Modal.Title className="title-modal" id="contained-modal-title-vcenter">
+                        Choose a name for your Chat
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className="button-modal" onClick={handleModal}>Create</Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
-
 }
 export default PageHome;
