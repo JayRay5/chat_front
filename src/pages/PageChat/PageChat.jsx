@@ -6,14 +6,49 @@ import FormUser from '../../components/FormUser/FormUser';
 import CardMessage from '../../components/CardMessage/CardMessage';
 import './PageChat.css';
 
+import { get_chat,get_users_filtered,chat_add_user } from '../../utils/api';
+
 function PageChat() {
     const [showModal, setShowModal] = useState(false);
+    const [showSpinner, setShowSpinner] = useState(false);
+    //all data of the chat
+    const [chatData,setChatData] = useState([])
 
-    const handleModal = () => {
-        console.log(showModal)
-        setShowModal(!showModal)
-    }
+    //all data of all users (for the form to add user)
+    const [usersData,setUsersData] = useState([])
+
+    //id of the new user add in the form
+    const [newUser,setNewUser] = useState("")
+
+    //input to enter a new message
     const [inputValue, setInputValue] = useState('');
+    useEffect(() => {
+        if (!localStorage.getItem("userId")) {
+            window.location.href = '/';
+        }
+        else {
+            console.log(localStorage.getItem("chatId"))
+            const fetchData = async ()=>{
+                const result= await get_chat(localStorage.getItem("chatId"))
+                setChatData(result)
+                const users = await get_users_filtered()
+                setUsersData(users)
+                console.log(result)
+                console.log(users)
+            }
+            
+            fetchData().catch((err)=>console.log(err))
+        }
+
+    }, [])
+
+    const handleNewUser = async () => {
+        setShowSpinner(true)
+        await chat_add_user(newUser)
+        await get_chat(localStorage.getItem("chatId"))
+        setShowModal(!showModal)
+        setShowSpinner(false)
+    }
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
@@ -23,6 +58,9 @@ function PageChat() {
         // Envoyer
         console.log(inputValue);
     };
+    const handleModal = ()=>{
+        setShowModal(!showModal)
+    }
 
     return (
         <div className="page-container">
@@ -48,10 +86,10 @@ function PageChat() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <FormUser />
+                    <FormUser showSpinner={showSpinner} setNewUser={setNewUser} users={usersData}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="button-modal" onClick={handleModal}>Add</Button>
+                    <Button className="button-modal" setNewUser={setNewUser} onClick={handleNewUser}>Add</Button>
                 </Modal.Footer>
             </Modal>
         </div>

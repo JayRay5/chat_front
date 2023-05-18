@@ -45,9 +45,12 @@ function PageHome() {
         handleModal()
         
     }
-    const handleClick = () => {
-        console.log(chatList)
-    }
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 13) {
+          // Enter key is pressed, validate the modal button
+          handleNewChat();
+        }
+      };
     return (
         <>
             <Topbar nameBtn={"Add Chat"} onClick={handleModal}/>
@@ -61,7 +64,7 @@ function PageHome() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form setName={setNewChatName} name={newChatName}/>
+                    <Form onKeyDown={handleKeyDown} setName={setNewChatName} name={newChatName}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="button-modal" onClick={handleNewChat}>Create</Button>
