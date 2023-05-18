@@ -24,4 +24,6 @@
     cursor: pointer;
     background-color: #7C42FC;
     color: white;
+    width: 100px;
+    margin: 0 0px;
 }

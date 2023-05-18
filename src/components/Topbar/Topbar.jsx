@@ -9,7 +9,8 @@ import './Topbar.css'
 import { log_out } from '../../utils/api';
 
 
-export default function Topbar() {
+export default function Topbar(props) {
+
   const [toggleMenu, setToggleMenu] = useState(false);
   const [largeur, setLargeur] = useState(window.innerWidth);
 
@@ -40,6 +41,7 @@ export default function Topbar() {
           <Nav.Link href="/home">Home</Nav.Link>
           <Nav.Link >User</Nav.Link>
           <Nav.Link onClick={log_out}>Logout</Nav.Link>
+          <Button onClick={props.onClick}>Add</Button>
         </Nav>
       </Container>
     </Navbar>

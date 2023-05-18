@@ -41,15 +41,10 @@ function PageHome() {
     }
     return (
         <>
-            <Topbar />
+            <Topbar onClick={handleModal}/>
             <div className="container-cards">
-                <Card>
-                    <h2>Hello Card</h2>
-                    <button onClick={handleClick}>Click</button>
-                </Card>
             </div>
             <Chatlist chats={chatList} />
-            <Button variant="primary" onClick={handleModal}>Add</Button>
             <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title className="title-modal" id="contained-modal-title-vcenter">

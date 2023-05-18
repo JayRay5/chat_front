@@ -5,8 +5,8 @@ export default function Form() {
   return (
     <>
     <form className="container-form">
-        <label htmlFor="ChatName"></label>
-        <input type="text" id="ChatName" placeholder="ChatName"/>
+        <label htmlFor="chat-Name"></label>
+        <input type="text" id="chat-Name" placeholder="ChatName"/>
     </form>
     </>
   )
