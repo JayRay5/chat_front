@@ -35,7 +35,7 @@ export default function Topbar(props) {
     <Navbar collapseOnSelect expand="md" className="navbar">
 
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/home">
           <img src={logo} width="210" height="100" className="logo" alt="Logo" />
         </Navbar.Brand>
         <Nav className="me-auto">

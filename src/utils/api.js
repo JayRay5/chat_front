@@ -47,16 +47,13 @@ export const login= (userId,password)=>{
         })
       })
     .then((response)=>{
-        console.log(response)
         return response.json()})
     .then((data)=>{
-        window.alert(data)
         if(data.isConnected==true){
             localStorage.setItem("userId",data.userId)
             window.location.href = '/home'; 
         }
         else{
-            console.log(data)
             window.alert("Authentification Failed!")
         }
     })
@@ -92,17 +89,16 @@ export const get_chats= ()=>{
 
 }
 
-export const create_chat= (name,userId)=>{
+export const create_chat= (name)=>{
     if(localStorage.getItem("userId")){
-    fetch(base_url+"chat/new", {
+    return fetch(base_url+"chat/new", {
         method: 'POST',
         credentials:"include",
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name: name,
-            userId: userId
+            name: name
         })
       })
     .then((response)=>{
@@ -124,7 +120,7 @@ export const get_chat= (chatId)=>{
     console.log("cc")
     if(localStorage.getItem("userId")){
         console.log("cc2")
-    fetch(base_url+`${chatId}`, {
+    fetch(base_url+`chat/${chatId}`, {
         method:"GET",
         credentials:"include",
         headers: {
@@ -144,6 +140,29 @@ export const get_chat= (chatId)=>{
         window.location.href='http://localhost:3000'
     }
 
+}
+
+export const delete_chat=(chatId)=>{
+    if(localStorage.getItem("userId")){
+     return fetch(base_url+`chat/delete/${chatId}`, {
+            method:"DELETE",
+            credentials:"include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            })
+            .then((response)=>response.json())
+            .then((data)=>{
+                console.log(data)
+                return data
+            })
+            .catch((err)=>{
+                console.log(err)})
+      }
+  
+      else{
+          window.location.href='http://localhost:3000'
+      }
 }
 
 export const get_users= ()=>{

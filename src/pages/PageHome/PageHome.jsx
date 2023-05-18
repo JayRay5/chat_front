@@ -8,11 +8,12 @@ import Modal from 'react-bootstrap/Modal';
 import Form from '../../components/Form/Form';
 import './PageHome.css';
 
-import { get_chats } from '../../utils/api';
+import { get_chats, create_chat } from '../../utils/api';
 
 function PageHome() {
     const [showModal, setShowModal] = useState(false);
     const [chatList,setChatList]= useState([])
+    const [newChatName,setNewChatName]= useState()
     useEffect(() => {
         if (!localStorage.getItem("userId")) {
             window.location.href = '/';
@@ -20,7 +21,6 @@ function PageHome() {
         else {
             const fetchData = async ()=>{
                 const result= await get_chats()
-                console.log(result)
                 setChatList(result)
             }
             
@@ -33,9 +33,18 @@ function PageHome() {
     const handleModal = () => {
         console.log(showModal)
         setShowModal(!showModal)
+
     }
     
-
+    const handleNewChat = async (event)=>{
+        event.preventDefault()
+        await create_chat(newChatName)
+        setNewChatName("")
+        const result= await get_chats()
+        setChatList(result)
+        handleModal()
+        
+    }
     const handleClick = () => {
         console.log(chatList)
     }
@@ -44,7 +53,7 @@ function PageHome() {
             <Topbar nameBtn={"Add Chat"} onClick={handleModal}/>
             <div className="container-cards">
             </div>
-            <Chatlist chats={chatList} />
+            <Chatlist setChatList={setChatList} chats={chatList} />
             <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title className="title-modal" id="contained-modal-title-vcenter">
@@ -52,10 +61,10 @@ function PageHome() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form />
+                    <Form setName={setNewChatName} name={newChatName}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="button-modal" onClick={handleModal}>Create</Button>
+                    <Button className="button-modal" onClick={handleNewChat}>Create</Button>
                 </Modal.Footer>
             </Modal>
         </>
