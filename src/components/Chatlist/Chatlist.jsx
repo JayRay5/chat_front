@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import './Chatlist.css'
 import { get_chat } from '../../utils/api'
 import Card from '../Card/Card'
@@ -17,7 +16,7 @@ export default function Chatlist(props) {
         <div>
             {chats.map((chat)=>{
                 return(
-                    <Card chat={chat}/>
+                    <Card setChatList={props.setChatList} chat={chat}/>
                 )
             })}
         </div>
