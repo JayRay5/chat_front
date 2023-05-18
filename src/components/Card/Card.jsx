@@ -13,6 +13,7 @@ export default function Card(props) {
 
   const handleDelete = async(event)=>{
     event.preventDefault()
+    event.stopPropagation();
     setIsProcessing(true)
     await delete_chat(chat[0])
     const result= await get_chats()
