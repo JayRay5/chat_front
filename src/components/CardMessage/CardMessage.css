@@ -3,26 +3,66 @@
     src: url("Poppins-Regular.ttf");
 }
 
-.bubble {
+.bubble-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 100px; 
+  }
+  
+  .bubble {
     position: relative;
-    display: inline-block;
     background-color: #F5F4F9;
     color: #000;
     border-radius: 20px;
-    padding: 10px 20px;
-    margin-bottom: 10px;
+    padding: 15px 30px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .bubble::after {
+  .bubble::before {
     content: "";
     position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: -20px;
     border-width: 10px;
     border-style: solid;
     border-color: transparent transparent #F5F4F9 transparent;
+    font-family: 'Poppins', sans-serif;
   }
   
-
-
+  .bubble.sent {
+    background-color: #7C42FC;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .bubble.sent::before {
+    bottom: -20px;
+    border-color: transparent transparent #7C42FC transparent;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .bubble.received {
+    align-self: flex-start;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .bubble.received::before {
+    right: 30px;
+    border-color: transparent #F5F4F9 transparent transparent;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .bubble.sent {
+    align-self: flex-end;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .bubble.sent::before {
+    left: 30px;
+    border-color: transparent transparent transparent #7C42FC;
+    font-family: 'Poppins', sans-serif;
+  }
+  .bubble.sent.first {
+    margin-top: 20px; 
+  }
+  
