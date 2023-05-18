@@ -1,30 +1,67 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url("Poppins-Regular.ttf")
+}
+
+.chat {
+    padding: 10px;
+    border-radius: 50px;
+    width: 100%;
+    border: transparent;
+    margin-bottom: 25px;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid #7C42FC;
+    padding-left: 30px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+input::placeholder {
+    color: #A4A8AD;
+    font-family: 'Poppins', sans-serif;
+}
+
+.inputChat-button {
+    position: relative; 
+    background-image: url('send.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size : 15px;
+    padding: 22px;
+    border-radius: 50px;
+    width: 5%;
+    border: 1px solid #7C42FC;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+  
+  .inputChat-button:active,
+  .inputChat-button:focus {
+    background-color: transparent; 
+  }
+  .inputChat-button:hover{
+    background-color: #F5F4F9;
+
+}
+
 .bottom-bar {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-  }
-  
-  .input-field {
-    width: 200px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  .button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #7C42FC;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #5F30B3;
-  }
-  
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+}
+
+.containerInput {
+    flex-basis: 80%;
+}
+
+.page-container {
+    background-color: #A4A8AD;
+}

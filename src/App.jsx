@@ -13,7 +13,9 @@ function App() {
           <Route path="/home" element={<PageHome/>}/>
           <Route path="/home/chat" element={<PageChat/>}/>
         </Routes>
-      </BrowserRouter>);
+      </BrowserRouter>
+      );
+      
 }
 
 export default App;

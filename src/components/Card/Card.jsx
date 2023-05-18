@@ -28,7 +28,7 @@ export default function Card(props) {
   return (
     <Link to="/home/chat" className="card custom-card">
         {chat[1]}
-        {isProcessing?(<Spinner/>):(<button onClick={handleDelete}> DELETE</button>)}
+        {isProcessing?(<Spinner/>):(<button className="button-delete"onClick={handleDelete}></button>)}
 
     </Link>
   )

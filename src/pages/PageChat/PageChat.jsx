@@ -3,9 +3,8 @@ import Topbar from '../../components/Topbar/Topbar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import FormUser from '../../components/FormUser/FormUser';
+import CardMessage from '../../components/CardMessage/CardMessage';
 import './PageChat.css';
-
-import { get_chats } from '../../utils/api';
 
 function PageChat() {
     const [showModal, setShowModal] = useState(false);
@@ -26,17 +25,21 @@ function PageChat() {
     };
 
     return (
-        <>
+        <div className="page-container">
             <Topbar nameBtn={"Add User"} onClick={handleModal} />
+            <CardMessage/>
             <div className="bottom-bar">
+            <div className='containerInput'>
+            <label htmlFor="inputValue"></label>
                 <input
                     type="text"
                     value={inputValue}
                     onChange={handleInputChange}
-                    className="input-field"
+                    className="chat"
                     placeholder="Aa"
                 />
-                <Button onClick={handleButtonClick}></Button>
+                </div>
+                <Button className="inputChat-button" onClick={handleButtonClick}></Button>
             </div>
             <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
@@ -51,7 +54,7 @@ function PageChat() {
                     <Button className="button-modal" onClick={handleModal}>Add</Button>
                 </Modal.Footer>
             </Modal>
-        </>
+        </div>
     )
 }
 export default PageChat;

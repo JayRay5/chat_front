@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url("Poppins-Regular.ttf");
+}
+
+.bubble {
+    position: relative;
+    display: inline-block;
+    background-color: #F5F4F9;
+    color: #000;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+  }
+  
+  .bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #F5F4F9 transparent;
+  }
+  
+
+

@@ -1,6 +1,6 @@
-@font-face{
-    font-family:'Poppins';
-    src: url("Poppins-Regular.ttf")
+@font-face {
+    font-family: 'Poppins';
+    src: url("Poppins-Regular.ttf");
 }
 
 .card {
@@ -14,7 +14,7 @@
     margin: 16px;
     background-color: #fff;
     margin-top: 20px;
-    position : relative;
+    position: relative;
     z-index: 1;
     color: black;
     transition: color 0.3s;
@@ -22,11 +22,38 @@
 
 .card:hover {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-    color: #7C42FC; 
+    color: #7C42FC;
 }
 
-.card h2{
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+}
+
+.card h2 {
     font-size: 15px;
     margin-bottom: 10px;
     font-family: 'Poppins', sans-serif;
+}
+
+.button-delete {
+    position: relative;
+    background-image: url('delete.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 17px;
+    padding: 15px;
+    border-radius: 50px;
+    width: 5%;
+    border: 1px solid #7C42FC;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+
+.button-delete:hover {
+    background-color: #F5F4F9;
 }
