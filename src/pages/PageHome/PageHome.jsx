@@ -41,7 +41,7 @@ function PageHome() {
     }
     return (
         <>
-            <Topbar onClick={handleModal}/>
+            <Topbar nameBtn={"Add Chat"} onClick={handleModal}/>
             <div className="container-cards">
             </div>
             <Chatlist chats={chatList} />

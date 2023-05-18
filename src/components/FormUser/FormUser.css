@@ -1,0 +1,35 @@
+@font-face{
+    font-family:'Poppins';
+    src: url("Poppins-Regular.ttf")
+}
+.title-form{
+    text-align:center;
+    font-size: 30px;
+    margin: 70px 0 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container-form input{
+    padding: 10px;
+    border-radius: 50px;
+    border: transparent;
+    margin-bottom: 25px;
+    font-size: 15px;
+    background-color: #F5F4F9;
+    padding-left: 50px;
+}
+
+.chat-Name{
+    background-image: url('');
+    background-repeat: no-repeat;
+    background-position: 20px 13px;
+    background-size : 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+input::placeholder {
+    color: #A4A8AD;
+    font-family: 'Poppins', sans-serif;
+  }
+
+
