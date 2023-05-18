@@ -32,16 +32,15 @@ export default function Topbar(props) {
   }, [])
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="navbar">
+    <Navbar collapseOnSelect expand="md" className="navbar">
+
       <Container>
-        <Navbar.Brand href="#home">
-          <img src={logo} width="210" height="100" className="d-inline-block align-top" alt="Logo" />
+        <Navbar.Brand href="/home">
+          <img src={logo} width="210" height="100" className="logo" alt="Logo" />
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link >User</Nav.Link>
           <Nav.Link onClick={log_out}>Logout</Nav.Link>
-          <Button onClick={props.onClick}>Add</Button>
+          <Button onClick={props.onClick}>{props.nameBtn}</Button>
         </Nav>
       </Container>
     </Navbar>

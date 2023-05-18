@@ -1,6 +1,7 @@
 import React from 'react';
 import './Form.css';
 
+
 export default function Form(props) {
   const handleChange = (event)=>{
     props.setName(event.target.value)
@@ -10,7 +11,7 @@ export default function Form(props) {
     <>
     <form className="container-form">
         <label htmlFor="chat-Name"></label>
-        <input type="text" id="chat-Name" onChange={handleChange} value={props.name} placeholder="ChatName"/>
+        <input type="text" id="chat-Name" onKeyDown={props.onKeyDown} onChange={handleChange} value={props.name} placeholder="ChatName"/>
     </form>
     </>
   )

@@ -1,4 +1,12 @@
+@font-face{
+    font-family:'Poppins';
+    src: url("Poppins-Regular.ttf")
+}
+
 .card {
+    text-decoration: none;
+    color: inherit;
+    cursor: default;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -8,13 +16,17 @@
     margin-top: 20px;
     position : relative;
     z-index: 1;
+    color: black;
+    transition: color 0.3s;
 }
 
 .card:hover {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    color: #7C42FC; 
 }
 
 .card h2{
     font-size: 15px;
     margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
 }

@@ -117,10 +117,9 @@ export const create_chat= (name)=>{
 }
 
 export const get_chat= (chatId)=>{
-    console.log("cc")
+    console.log("cc", chatId)
     if(localStorage.getItem("userId")){
-        console.log("cc2")
-    fetch(base_url+`chat/${chatId}`, {
+    return fetch(base_url+`chat/${chatId}`, {
         method:"GET",
         credentials:"include",
         headers: {
@@ -167,7 +166,7 @@ export const delete_chat=(chatId)=>{
 
 export const get_users= ()=>{
     if(localStorage.getItem("userId")){
-    fetch(base_url+"user/all", {
+    return fetch(base_url+"user/all", {
         credentials:"include",
         headers: {
             'Content-Type': 'application/json'
@@ -177,6 +176,30 @@ export const get_users= ()=>{
     .then((data)=>{
         console.log(data)
         return data
+    })
+    .catch((err)=>{
+        console.log(err)
+        window.alert("Error with the server")})
+    }
+
+    else{
+        window.location.href='http://localhost:3000'
+    }
+
+}
+
+export const get_users_filtered= ()=>{
+    if(localStorage.getItem("userId")){
+    return fetch(base_url+"user/all/filtered", {
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+  })
+    .then((response)=>response.json())
+    .then((data)=>{
+        console.log(data)
+        return data.rows
     })
     .catch((err)=>{
         console.log(err)
@@ -217,7 +240,7 @@ export const write_message= (messageValue)=>{
 
 export const chat_add_user= (userId)=>{
     if(localStorage.getItem("userId")){
-    fetch(base_url+"chat/chat/add_user", {
+    return fetch(base_url+"chat/chat/add_user", {
         method: 'POST',
         credentials:"include",
         headers: {
@@ -228,8 +251,8 @@ export const chat_add_user= (userId)=>{
         })
       })
     .then((response)=>{
-        console.log(response.json())
-        return response.json()})
+        console.log('response add user')
+        return response})
     .then((data)=>{
         console.log(data)
         window.alert("User added!")
