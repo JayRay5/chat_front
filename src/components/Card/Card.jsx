@@ -26,8 +26,8 @@ export default function Card(props) {
   return (
     <div className="card">
         {chat[1]}
-        <button onClick={handleDelete}> DELETE</button>
-        {isProcessing?(<Spinner/>):(<></>)}
+        
+        {isProcessing?(<Spinner/>):(<button onClick={handleDelete}> DELETE</button>)}
 
     </div>
   )
