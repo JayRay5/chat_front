@@ -3,12 +3,11 @@
     src: url("Poppins-Regular.ttf")
 }
 
-.container-cards{
+.container-conversations{
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    flex-wrap: wrap;
     width: 100%;
-    max-width: 1300px;
     margin: 0 auto 0;
 }
 

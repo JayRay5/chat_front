@@ -33,10 +33,10 @@ function PageLogin (){
             <h1 className="title-form">Log In using EUC Username</h1>
             <form className="container-form">
             <label htmlFor="userID"></label>
-            <input value={userId} onChange={handleUserId} className="user"></input>
+            <input value={userId} onChange={handleUserId} className="user" placeholder="UserName"></input>
             
             <label htmlFor="password"></label>
-            <input value={password} onChange={handlePassword} id="password" type="password" placeholder="password" className="password"></input>
+            <input value={password} onChange={handlePassword} id="password" type="password" placeholder="Password" className="password"></input>
             
             <button type='submit' onClick={handleSubmit}>Continue</button>
             </form>

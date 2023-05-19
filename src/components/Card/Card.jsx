@@ -41,7 +41,7 @@ export default function Card(props) {
   }
 
   return (
-    <Link onClick={handleGetChat} className="card custom-card">
+    <Link onClick={handleGetChat} className="card-custom">
         {chat[1]}
         {isProcessing?(<Spinner/>):(isOwner?<button className="button-delete"onClick={handleDelete}></button>:(<></>))}
 
