@@ -46,11 +46,15 @@ function PageChat() {
     }, [])
 
     const handleNewUser = async () => {
+        if(newUser!=""){
         setShowSpinner(true)
         await chat_add_user(newUser)
         await get_chat(localStorage.getItem("chatId"))
         setShowModal(!showModal)
-        setShowSpinner(false)
+        setShowSpinner(false)}
+        else{
+            window.alert("You have to enter a user")
+        }
     }
 
     const handleInputChange = (event) => {

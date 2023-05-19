@@ -39,6 +39,8 @@ function PageHome() {
     }
     
     const handleNewChat = async (event)=>{
+        if(newChatName!=""){
+        console.log(newChatName)
         event.preventDefault()
         setShowSpinnerAddChat(true)
         await create_chat(newChatName)
@@ -47,6 +49,10 @@ function PageHome() {
         setChatList(result)
         handleModal()
         setShowSpinnerAddChat(false)
+        }
+        else{
+            window.alert("You have to enter a name for the chat!")
+        }
         
     }
     const handleKeyDown = (event) => {
