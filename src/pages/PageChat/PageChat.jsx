@@ -70,7 +70,7 @@ function PageChat() {
     return (
         <div className="page-container">
             <Topbar nameBtn={"Add User"} onClick={handleModal} />
-            <CardMessage/>
+            <CardMessage messages={chatData}/>
             <div className="bottom-bar">
             <div className='containerInput'>
             <label htmlFor="inputValue"></label>

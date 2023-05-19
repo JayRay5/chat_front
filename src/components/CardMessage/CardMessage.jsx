@@ -2,30 +2,43 @@ import React from 'react'
 import './CardMessage.css'
 
 
-import { delete_chat, get_chats } from '../../utils/api'
 
-export default function CardMessage() {
+export default function CardMessage(props) {
 
-    return (
+    const messages = props.messages
+       return (
         <>
-            <div class="bubble-container">
-                <div class="bubble received">
-                    Message reçu 1
-                </div>
+             <div class="bubble-container">
+            {messages.map((message)=>{
+                console.log(message)
+                let owner;
+                if(message.USERNAME==localStorage.getItem("userId")){
+                    owner=true
+                }
 
-                <div class="bubble sent">
-                    Message envoyé 1
-                </div>
+                return(
+                    <div class="bubble-container mt-5 mb-10">
+                        {
+                        owner?(
+                            <div class="bubble sent text-center">
+                            {message.MESSAGE_VALUE}
+                            </div>
+                        ):
+                        <div class="bubble received">
+                            {message.MESSAGE_VALUE}
+                        </div>
+                    }
+                    </div>
+                    
+                )
+            })}
+                
 
-                <div class="bubble received">
-                    Message reçu 2
-                </div>
+                
 
-                <div class="bubble sent">
-                    Message envoyé 2
-                </div>
             </div>
 
         </>
     )
 }
+

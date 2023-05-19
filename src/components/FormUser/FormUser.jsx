@@ -37,6 +37,7 @@ export default function FormUser(props) {
           placeholder="UserName"
           value={searchValue}
           onChange={handleInputChange}
+          required
         />
       </form>
 
