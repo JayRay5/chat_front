@@ -14,6 +14,7 @@
   background: #7C42FC;
   box-shadow: 0 0 50px 0 darkgrey;
   z-index: 999;
+  position: sticky;
 }
 
 .me-auto .nav-link {
@@ -36,6 +37,24 @@
   background-color: transparent;
   width: 100px;
   margin-left: 10px; 
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+  background-color: #7C42FC;
+  border-color: #7C42FC;
+}
+
+.btn:active {
+  background-color: #7C42FC;
+}
+
+.btn:focus {
+  background-color: #7C42FC;
+  --bs-btn-active-bg: #7C42FC;
+  --bs-btn-active-border-color: #7C42FC;
 }
 
 .logo {

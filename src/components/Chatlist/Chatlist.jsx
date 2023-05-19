@@ -13,7 +13,7 @@ export default function Chatlist(props) {
         get_chat(chat[0])
     }*/
     return (
-        <div>
+        <div className='card-chat-list'>
             {chats.map((chat)=>{
                 return(
                     <Card setChatList={props.setChatList} chat={chat}/>

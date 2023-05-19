@@ -54,9 +54,9 @@ function PageHome() {
     return (
         <>
             <Topbar nameBtn={"Add Chat"} onClick={handleModal}/>
-            <div className="container-cards">
-            </div>
+            <div className=".container-conversations">
             <Chatlist setChatList={setChatList} chats={chatList} />
+            </div>
             <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title className="title-modal" id="contained-modal-title-vcenter">

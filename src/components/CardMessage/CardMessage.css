@@ -23,7 +23,7 @@
     content: "";
     position: absolute;
     bottom: -20px;
-    border-width: 10px;
+    border-width: 1px;
     border-style: solid;
     border-color: transparent transparent #F5F4F9 transparent;
     font-family: 'Poppins', sans-serif;
