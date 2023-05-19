@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Topbar from '../../components/Topbar/Topbar';
 import Chatlist from '../../components/Chatlist/Chatlist';
-import Card from '../../components/Card/Card';
+import Spinner from 'react-bootstrap/Spinner';
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from '../../components/Form/Form';
@@ -14,6 +15,7 @@ function PageHome() {
     const [showModal, setShowModal] = useState(false);
     const [chatList,setChatList]= useState([])
     const [newChatName,setNewChatName]= useState()
+    const [showSpinnerAddChat,setShowSpinnerAddChat] = useState(false)
     useEffect(() => {
         if (!localStorage.getItem("userId")) {
             window.location.href = '/';
@@ -37,12 +39,20 @@ function PageHome() {
     }
     
     const handleNewChat = async (event)=>{
+        if(newChatName!=""){
+        console.log(newChatName)
         event.preventDefault()
+        setShowSpinnerAddChat(true)
         await create_chat(newChatName)
         setNewChatName("")
         const result= await get_chats()
         setChatList(result)
         handleModal()
+        setShowSpinnerAddChat(false)
+        }
+        else{
+            window.alert("You have to enter a name for the chat!")
+        }
         
     }
     const handleKeyDown = (event) => {
@@ -67,7 +77,11 @@ function PageHome() {
                     <Form onKeyDown={handleKeyDown} setName={setNewChatName} name={newChatName}/>
                 </Modal.Body>
                 <Modal.Footer>
+                    {showSpinnerAddChat?(
+                        <Spinner/>
+                    ):
                     <Button className="button-modal" onClick={handleNewChat}>Create</Button>
+                    }
                 </Modal.Footer>
             </Modal>
         </>

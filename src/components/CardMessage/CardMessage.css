@@ -13,6 +13,7 @@
     position: relative;
     background-color: #F5F4F9;
     color: #000;
+    min-width: 25%;
     border-radius: 20px;
     padding: 15px 30px;
     margin-bottom: 15px;
@@ -30,6 +31,7 @@
   }
   
   .bubble.sent {
+    align-items: right;
     background-color: #7C42FC;
     color: #fff;
     font-family: 'Poppins', sans-serif;

@@ -10,9 +10,10 @@ import { delete_chat, get_chats } from '../../utils/api'
 export default function Card(props) {
   const chat=props.chat
   const [isProcessing,setIsProcessing]= useState(false)
-
+  console.log(chat)
   const handleDelete = async(event)=>{
     event.preventDefault()
+    event.stopPropagation();
     setIsProcessing(true)
     await delete_chat(chat[0])
     const result= await get_chats()
@@ -34,11 +35,15 @@ export default function Card(props) {
     // Gérer le cas où chat est undefined ou null
     return null; // Ou un message d'erreur, une autre représentation, etc.
   }
+  let isOwner=false
+  if(localStorage.getItem("userId")==chat[2]){
+    isOwner=true
+  }
 
   return (
     <Link onClick={handleGetChat} className="card-custom">
         {chat[1]}
-        {isProcessing?(<Spinner/>):(<button className="button-delete"onClick={handleDelete}></button>)}
+        {isProcessing?(<Spinner/>):(isOwner?<button className="button-delete"onClick={handleDelete}></button>:(<></>))}
 
     </Link>
   )

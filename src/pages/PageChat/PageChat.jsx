@@ -6,11 +6,13 @@ import FormUser from '../../components/FormUser/FormUser';
 import CardMessage from '../../components/CardMessage/CardMessage';
 import './PageChat.css';
 
-import { get_chat,get_users_filtered,chat_add_user } from '../../utils/api';
+import { get_chat,get_users_filtered,chat_add_user,write_message } from '../../utils/api';
+import Spinner from 'react-bootstrap/Spinner';
 
 function PageChat() {
     const [showModal, setShowModal] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
+    const [showMessageSpinner, setShowMessageSpinner] = useState(false);
     //all data of the chat
     const [chatData,setChatData] = useState([])
 
@@ -22,6 +24,7 @@ function PageChat() {
 
     //input to enter a new message
     const [inputValue, setInputValue] = useState('');
+
     useEffect(() => {
         if (!localStorage.getItem("userId")) {
             window.location.href = '/';
@@ -43,20 +46,26 @@ function PageChat() {
     }, [])
 
     const handleNewUser = async () => {
+        if(newUser!=""){
         setShowSpinner(true)
         await chat_add_user(newUser)
         await get_chat(localStorage.getItem("chatId"))
         setShowModal(!showModal)
-        setShowSpinner(false)
+        setShowSpinner(false)}
+        else{
+            window.alert("You have to enter a user")
+        }
     }
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
 
-    const handleButtonClick = () => {
-        // Envoyer
-        console.log(inputValue);
+    const handleButtonClick = async() => {
+        setShowMessageSpinner(true)
+        await write_message(inputValue)
+        setShowMessageSpinner(false)
+        setInputValue("")
     };
     const handleModal = ()=>{
         setShowModal(!showModal)
@@ -65,7 +74,7 @@ function PageChat() {
     return (
         <div className="page-container">
             <Topbar nameBtn={"Add User"} onClick={handleModal} />
-            <CardMessage/>
+            <CardMessage messages={chatData}/>
             <div className="bottom-bar">
             <div className='containerInput'>
             <label htmlFor="inputValue"></label>
@@ -88,8 +97,9 @@ function PageChat() {
                 <Modal.Body>
                     <FormUser showSpinner={showSpinner} setNewUser={setNewUser} users={usersData}/>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button className="button-modal" setNewUser={setNewUser} onClick={handleNewUser}>Add</Button>
+                <Modal.Footer>{
+                    showMessageSpinner?(<Spinner/>):
+                    <Button className="button-modal" setNewUser={setNewUser} onClick={handleNewUser}>Add</Button>}
                 </Modal.Footer>
             </Modal>
         </div>
