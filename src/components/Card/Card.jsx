@@ -10,7 +10,7 @@ import { delete_chat, get_chats } from '../../utils/api'
 export default function Card(props) {
   const chat=props.chat
   const [isProcessing,setIsProcessing]= useState(false)
-  console.log(chat)
+
   const handleDelete = async(event)=>{
     event.preventDefault()
     event.stopPropagation();

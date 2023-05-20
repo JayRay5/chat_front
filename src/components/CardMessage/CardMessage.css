@@ -3,6 +3,10 @@
     src: url("Poppins-Regular.ttf");
 }
 
+.conversation-container{
+  margin-bottom: 10%;
+}
+
 .bubble-container {
     display: flex;
     flex-direction: column;

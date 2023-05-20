@@ -214,7 +214,7 @@ export const get_users_filtered= ()=>{
 
 export const write_message= (messageValue)=>{
     if(localStorage.getItem("userId")){
-    return fetch(base_url+"chat/chat/new_message", {
+    return fetch(base_url+`chat/chat/${localStorage.getItem('chatId')}/new_message`, {
         method: 'POST',
         credentials:"include",
         headers: {
