@@ -38,8 +38,8 @@ function PageHome() {
 
     }
     
-    const handleNewChat = async (event)=>{
-        if(newChatName!=""){
+    const handleNewChat = async (event)=>{ 
+        if(!/^\s*$/.test(newChatName)){
         console.log(newChatName)
         event.preventDefault()
         setShowSpinnerAddChat(true)

@@ -72,6 +72,7 @@ function PageChat() {
     
                 //listen if there is a new message
                 socket.on('messages', (messages) => {
+                    console.log("cc")
                     //set the message list
                     setChatData(messages)
                 });
@@ -81,6 +82,20 @@ function PageChat() {
                 };
             }
     },[])
+    /*
+
+    useEffect(() => {
+        const reloadPage = () => {
+          window.location.reload(); // Recharge la page
+        };
+    
+        const intervalId = setInterval(reloadPage, 20000); // Définit l'intervalle de 20 secondes
+    
+        // Nettoie l'intervalle lors du démontage du composant
+        return () => {
+          clearInterval(intervalId);
+        };
+      }, []);*/
 
     const handleNewUser = async () => {
         if(newUser!=""){
