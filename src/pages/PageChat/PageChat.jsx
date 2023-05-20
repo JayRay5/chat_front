@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 import Topbar from '../../components/Topbar/Topbar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -16,6 +17,9 @@ function PageChat() {
     //all data of the chat
     const [chatData,setChatData] = useState([])
 
+    //name of the chat
+    const [chatName,setChatName]=useState("")
+
     //all data of all users (for the form to add user)
     const [usersData,setUsersData] = useState([])
 
@@ -30,20 +34,53 @@ function PageChat() {
             window.location.href = '/';
         }
         else {
+            
             console.log(localStorage.getItem("chatId"))
             const fetchData = async ()=>{
                 const result= await get_chat(localStorage.getItem("chatId"))
                 setChatData(result)
                 const users = await get_users_filtered()
                 setUsersData(users)
-                console.log(result)
-                console.log(users)
-            }
+                setChatName(result[0].NAME)
+                window.location.href='#last_message'
+        }
             
             fetchData().catch((err)=>console.log(err))
-        }
+    }
 
     }, [])
+
+    useEffect(()=>{
+        if (!localStorage.getItem("userId")) {
+            window.location.href = '/';
+        }
+            else{
+
+                const socket = io(`http://localhost:8000`, {
+                    transports: ['websocket', 'polling', 'flashsocket'],
+                    extraHeaders: {
+                      'Content-Type': 'application/json'
+                    },
+                    withCredentials: true
+                  }, (error) => {
+                    if (error) {
+                      console.error('WebSocket connection error:', error);
+                    } else {
+                      console.log('WebSocket connection established.');
+                    }
+                  }); 
+    
+                //listen if there is a new message
+                socket.on('messages', (messages) => {
+                    //set the message list
+                    setChatData(messages)
+                });
+                // Nettoyez la connexion WebSocket lorsque le composant est démonté
+                return () => {
+                    socket.disconnect();
+                };
+            }
+    },[])
 
     const handleNewUser = async () => {
         if(newUser!=""){
@@ -53,7 +90,7 @@ function PageChat() {
         setShowModal(!showModal)
         setShowSpinner(false)}
         else{
-            window.alert("You have to enter a user")
+            window.alert("You have to enter a valid user")
         }
     }
 
@@ -62,18 +99,27 @@ function PageChat() {
     };
 
     const handleButtonClick = async() => {
+        if(!/^\s*$/.test(inputValue)){
         setShowMessageSpinner(true)
         await write_message(inputValue)
         setShowMessageSpinner(false)
         setInputValue("")
+        console.log(chatName)}
+        else{
+            setInputValue("")
+        }
+      
     };
+   
     const handleModal = ()=>{
         setShowModal(!showModal)
     }
 
     return (
         <div className="page-container">
-            <Topbar nameBtn={"Add User"} onClick={handleModal} />
+            
+            <Topbar nameBtn={"Add User"} chatName={chatName} onClick={handleModal} />
+            
             <CardMessage messages={chatData}/>
             <div className="bottom-bar">
             <div className='containerInput'>

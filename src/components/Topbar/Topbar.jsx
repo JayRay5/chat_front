@@ -36,12 +36,13 @@ export default function Topbar(props) {
 
       <Container>
         <Navbar.Brand href="/home">
-        <div className="container-navbar-chat">
-        <Button className="chat-name-button"></Button>
-        <div className="chat-name-style">Nom chat</div>
-        </div>
           {props.home?(
-          <img src={logo} width="210" height="100" className="logo" alt="Logo" />):<div></div>}
+          <img src={logo} width="210" height="100" className="logo" alt="Logo" />):
+          <div className="container-navbar-chat">
+          <Button className="chat-name-button"></Button>
+          <div className="chat-name-style">{props.chatName}</div>
+          </div>
+          }
         </Navbar.Brand>
         <Nav className="elements-navbar">
           <Nav.Link onClick={log_out}>Logout</Nav.Link>

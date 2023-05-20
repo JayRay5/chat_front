@@ -1,12 +1,21 @@
 @font-face {
-    font-family: 'Poppins';
-    src: url("Poppins-Regular.ttf");
+  font-family: 'Poppins';
+  src: url("Poppins-Regular.ttf");
+}
+
+.custom-container{
+  max-height: 440px; 
+  overflow-y: auto;
+}
+
+.conversation-container {
+  margin-bottom: 10%;
 }
 
 .bubble-container {
   display: flex;
   flex-direction: column;
-  margin: 0 100px;
+  margin: 0 50px;
 }
 
 .bubble {
@@ -18,6 +27,9 @@
   padding: 15px 30px;
   margin-bottom: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 50%;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .bubble::before {
@@ -41,6 +53,7 @@
   bottom: -20px;
   border-color: transparent transparent #7C42FC transparent;
   font-family: 'Poppins', sans-serif;
+  text-align: left;
 }
 
 .bubble.received {
@@ -69,8 +82,9 @@
   margin-top: 20px;
 }
 
-.bubble .username {
-  font-size: 14px;
-  font-weight: bold;
+.username-left {
+  text-align: left;
+  font-size: 13px;
   margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
 }
