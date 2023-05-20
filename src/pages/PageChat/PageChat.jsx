@@ -89,7 +89,7 @@ function PageChat() {
                 <Button className="inputChat-button" onClick={handleButtonClick}></Button>
             </div>
             <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton onClick={() => setShowModal(false)}>
                     <Modal.Title className="title-modal" id="contained-modal-title-vcenter">
                         Add a user to Chat
                     </Modal.Title>
@@ -99,7 +99,7 @@ function PageChat() {
                 </Modal.Body>
                 <Modal.Footer>{
                     showMessageSpinner?(<Spinner/>):
-                    <Button className="button-modal" setNewUser={setNewUser} onClick={handleNewUser}>Add</Button>}
+                    <Button className="button-for-modal" setNewUser={setNewUser} onClick={handleNewUser}>Add</Button>}
                 </Modal.Footer>
             </Modal>
         </div>

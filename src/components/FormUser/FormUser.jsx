@@ -30,15 +30,8 @@ export default function FormUser(props) {
   return (
     <>
       <form className="container-form">
-        <label htmlFor="chat-Name"></label>
-        <input
-          type="text"
-          id="chat-Name"
-          placeholder="UserName"
-          value={searchValue}
-          onChange={handleInputChange}
-          required
-        />
+        <label htmlFor="user-name"></label>
+        <input className="user-name" type="text" id="user-name" placeholder="UserName" value={searchValue} onChange={handleInputChange} required/>
       </form>
 
       {/* Render the suggested users */}

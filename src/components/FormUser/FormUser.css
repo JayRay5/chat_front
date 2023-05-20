@@ -19,8 +19,8 @@
     padding-left: 50px;
 }
 
-.chat-Name{
-    background-image: url('');
+.user-name{
+    background-image: url('user.svg');
     background-repeat: no-repeat;
     background-position: 20px 13px;
     background-size : 15px;

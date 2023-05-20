@@ -19,11 +19,11 @@
     padding-left: 50px;
 }
 
-.chat-Name{
+.chat-name{
     background-image: url('message.svg');
     background-repeat: no-repeat;
-    background-position: 20px 13px;
-    background-size : 15px;
+    background-position: 20px 12px;
+    background-size : 20px;
     font-family: 'Poppins', sans-serif;
 }
 

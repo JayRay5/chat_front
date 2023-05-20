@@ -22,6 +22,12 @@ input::placeholder {
     font-family: 'Poppins', sans-serif;
 }
 
+input:focus {
+    border-color: #7C42FC;
+    outline: none;
+    box-shadow: 0 0 5px #7C42FC; 
+  }
+  
 .inputChat-button {
     position: relative; 
     background-image: url('send.svg');
@@ -30,22 +36,31 @@ input::placeholder {
     background-size : 15px;
     padding: 22px;
     border-radius: 50px;
-    width: 5%;
+    width: 3%;
     border: 1px solid #7C42FC;
     background-color: white;
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
     margin-bottom: 25px;
+    transition: box-shadow 0.3s, transform 0.3s;
 }
   
-  .inputChat-button:active,
-  .inputChat-button:focus {
-    background-color: transparent; 
+  .inputChat-button:hover {
+    box-shadow: 0 0 5px #7C42FC;
+    background-color: transparent;
+    border-color: #7C42FC;
+    transform: scale(1.1);
   }
-  .inputChat-button:hover{
-    background-color: #F5F4F9;
-
-}
+  
+  .inputChat-button:active {
+    background-color: transparent;
+  }
+  
+  .inputChat-button:focus {
+    background-color: transparent;
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: #7C42FC;
+  }
 
 .bottom-bar {
     width: 100%;
@@ -60,5 +75,6 @@ input::placeholder {
 
 .containerInput {
     flex-basis: 80%;
+    margin-right: 20px;
 }
 

@@ -17,16 +17,27 @@
   position: sticky;
 }
 
-.me-auto .nav-link {
+.elements-navbar{
+  margin-right: 5%;
+}
+
+.nav-link {
   color: #f1f1f1;
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   cursor: pointer;
-  margin-right: 20px;
   margin-left: auto; 
+  margin-right: auto;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.btn {
+.nav-link:hover {
+  box-shadow: 0 0 10px white(0, 0, 0, 0.3);
+  transform: scale(1.1);
+  color: #f1f1f1;
+}
+
+.button-navbar {
   color: #f1f1f1;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
@@ -36,22 +47,22 @@
   border: 1.5px solid white;
   background-color: transparent;
   width: 100px;
-  margin-left: 10px; 
+  margin-left: 20px; 
   transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.btn:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.button-navbar:hover {
+  box-shadow: 0 0 10px white(0, 0, 0, 0.3);
   transform: scale(1.1);
   background-color: #7C42FC;
-  border-color: #7C42FC;
+  border-color: white;
 }
 
-.btn:active {
+.button-navbar:active {
   background-color: #7C42FC;
 }
 
-.btn:focus {
+.button-navbar:focus {
   background-color: #7C42FC;
   --bs-btn-active-bg: #7C42FC;
   --bs-btn-active-border-color: #7C42FC;
@@ -60,28 +71,46 @@
 .logo {
     height: 105px; 
     width: auto; 
-    padding-left: 20px; 
-    margin-right: 600px; 
+    margin-left: 10%; 
   }
 
-  @media (max-width: 768px) {
-    .me-auto {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: center;
-    }
-    
-    .navbar {
-      align-items: center;
-    }
-    
-    .logo {
-      height: 105px; 
-      width: auto; 
-      padding-left: 10px; 
-      margin-right: 30px; 
-    }
-  }
-  
-  
+.container-navbar-chat{
+  display: flex; 
+  align-items: center;
+}
+
+.chat-name-style{
+  color:white;
+  padding-left: 30px; 
+  font-size: 16px;
+  margin-left: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.chat-name-button{
+  position: relative; 
+  background-image: url('left.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size : 20px;
+  background-color: #7C42FC;
+  border-color: #7C42FC;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.chat-name-button:hover {
+  box-shadow: 0 0 10px white(0, 0, 0, 0.3);
+  transform: scale(1.1);
+  background-color: #7C42FC;
+  border-color: #7C42FC;
+}
+
+.chat-name-button:active {
+  background-color: #7C42FC;
+}
+
+.chat-name-button:focus {
+  background-color: #7C42FC;
+  --bs-btn-active-bg: #7C42FC;
+  --bs-btn-active-border-color: #7C42FC;
+}

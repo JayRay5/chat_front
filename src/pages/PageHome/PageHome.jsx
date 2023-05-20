@@ -63,12 +63,12 @@ function PageHome() {
       };
     return (
         <>
-            <Topbar nameBtn={"Add Chat"} onClick={handleModal}/>
+            <Topbar nameBtn={"Add Chat"} home={true}onClick={handleModal}/>
             <div className=".container-conversations">
             <Chatlist setChatList={setChatList} chats={chatList} />
             </div>
             <Modal show={showModal} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton onClick={() => setShowModal(false)}>
                     <Modal.Title className="title-modal" id="contained-modal-title-vcenter">
                         Choose a name for your Chat
                     </Modal.Title>
@@ -80,7 +80,7 @@ function PageHome() {
                     {showSpinnerAddChat?(
                         <Spinner/>
                     ):
-                    <Button className="button-modal" onClick={handleNewChat}>Create</Button>
+                    <Button className="button-for-modal" onClick={handleNewChat}>Create</Button>
                     }
                 </Modal.Footer>
             </Modal>
