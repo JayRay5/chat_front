@@ -6,16 +6,25 @@ import './CardMessage.css'
 export default function CardMessage(props) {
 
     const messages = props.messages
+    let i=0
+    messages.forEach(element => {
+        if(element.USERNAME==null){
+            i+=1
+        }
+    });
        return (
         <div className="conversation-container custom-container">
              <div class="bubble-container">
-            {messages.map((message,i)=>{
+            {messages.map((message)=>{
+               i+=1
+                console.log(message)
                 let owner;
                 if(message.USERNAME==localStorage.getItem("userId")){
                     owner=true
                 }
                 if(message.MESSAGE_VALUE){
-                if(messages.length==(i+1)){
+                    console.log(i,messages.length)
+                if(messages.length==(i)){
                     console.log("ccccccc")
                     return(
                         <a id="last_message">

@@ -27,7 +27,8 @@ function PageChat() {
     const [newUser,setNewUser] = useState("")
 
     //input to enter a new message
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState("");
+
 
     useEffect(() => {
         if (!localStorage.getItem("userId")) {
@@ -82,20 +83,22 @@ function PageChat() {
                 };
             }
     },[])
-    /*
+    
 
     useEffect(() => {
         const reloadPage = () => {
           window.location.reload(); // Recharge la page
         };
     
-        const intervalId = setInterval(reloadPage, 20000); // Définit l'intervalle de 20 secondes
+        const intervalId = setInterval(reloadPage, 60000); // Définit l'intervalle de 20 secondes
     
         // Nettoie l'intervalle lors du démontage du composant
         return () => {
           clearInterval(intervalId);
         };
-      }, []);*/
+
+    
+      }, []);
 
     const handleNewUser = async () => {
         if(newUser!=""){
@@ -114,7 +117,7 @@ function PageChat() {
     };
 
     const handleButtonClick = async() => {
-        if(!/^\s*$/.test(inputValue)){
+        if(!/^\s*$/.test(inputValue)&& inputValue!=""){
         setShowMessageSpinner(true)
         await write_message(inputValue)
         setShowMessageSpinner(false)
